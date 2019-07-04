@@ -1,7 +1,8 @@
 # mulitDataSource
 
+修改resources目录下application-env.yml配置文件中的数据库密码
+创建两个数据库名字分别为dataSourceTwo,dataSourceOne.
 
-创建两个数据库名字分别为dataSourceTwo,dataSourceOne
 
 在dataSourceTwo中执行以下数据语句
 SET NAMES utf8;
