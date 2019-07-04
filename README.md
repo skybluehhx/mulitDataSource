@@ -1,10 +1,14 @@
 # mulitDataSource
 
+#
 修改resources目录下application-env.yml配置文件中的数据库密码
+#
 创建两个数据库名字分别为dataSourceTwo,dataSourceOne.
 
-
+#
 在dataSourceTwo中执行以下数据语句
+
+#
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -26,10 +30,13 @@ INSERT INTO `datasource` VALUES ('1', '2');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
-数据库此时默认数据库配置库为dataSourceOne
+#
+yml文件中配置的默认数据库配置库为dataSourceOne
 
+#
 浏览器访问 "http://localhost:8080/test" 正常返回结果，因为该库中有表datasource
 
+#
 浏览器访问 http://localhost:8080/test?dataSource=dataSourceTwo 抛出异常，因为该库中无表datasource
 
 
