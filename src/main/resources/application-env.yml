@@ -28,8 +28,7 @@ spring:
       validation-query: SELECT 1
       test-while-idle: true
       time-between-eviction-runs-millis: 27800
-external-dependency:
-  miner.url: http://10.143.248.79:8081
+
 #  redis:
 #    sentinel:
 #      master: mymaster
