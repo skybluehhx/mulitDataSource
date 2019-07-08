@@ -1,4 +1,4 @@
-package com.lin.datasource;
+package com.lin.mulit.datasource;
 
 import lombok.Data;
 import org.apache.logging.log4j.util.Strings;
@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;

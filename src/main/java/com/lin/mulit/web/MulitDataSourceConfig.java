@@ -1,4 +1,4 @@
-package com.lin.config.web;
+package com.lin.mulit.web;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

@@ -1,4 +1,4 @@
-package com.lin.dao;
+package com.lin.mulit.dao;
 
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;

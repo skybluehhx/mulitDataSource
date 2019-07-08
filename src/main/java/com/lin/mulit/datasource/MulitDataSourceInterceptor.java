@@ -1,4 +1,4 @@
-package com.lin.datasource;
+package com.lin.mulit.datasource;
 
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.lin.datasource.MulitConstant.DATA_SOURCE_PARAM_NAME;
+import static com.lin.mulit.datasource.MulitConstant.DATA_SOURCE_PARAM_NAME;
 
 
 /**
