@@ -4,11 +4,8 @@ import com.lin.annotation.Name;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 /**
  * 保存数据库名的上下文信息
@@ -25,7 +22,6 @@ public class JDBCContext {
 
     private NameMethod nameMethod;
 
-    private int order;
 
     private boolean seal;
 
@@ -40,7 +36,6 @@ public class JDBCContext {
      * @param dataSourceBean
      */
     public JDBCContext(String dataSourceBean) {
-        order = Integer.MAX_VALUE;
         this.dataSourceBean = dataSourceBean;
         this.seal = true;
     }
@@ -50,15 +45,9 @@ public class JDBCContext {
         if (seal) {
             throw new IllegalArgumentException("the jdbccontext is seal , you can't operate it");
         }
-        int order = nameMethod.getName().order();
-        putNameMethodAndOrder(nameMethod, order);
+        this.nameMethod = nameMethod;
     }
 
-    protected void putNameMethodAndOrder(NameMethod nameMethod, int order) {
-        this.nameMethod = nameMethod;
-        this.order = order;
-        this.seal = true;
-    }
 
 
     public String getDataSourceBeanName() {
@@ -113,9 +102,7 @@ public class JDBCContext {
         nameMethod = null;
     }
 
-    public int getOrder() {
-        return this.order;
-    }
+
 
     public boolean getSeal() {
         return this.seal;
