@@ -1,24 +1,29 @@
 package com.lin.server;
 
-import com.lin.annotation.Name;
-import com.lin.dao.DataSourceTwoDao;
-import org.aspectj.lang.annotation.After;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.lin.datasource.MulitDataSourceSupport;
+import org.springframework.stereotype.Component;
+
 
 /**
  * @author jianglinzou
  * @date 2019/7/10 下午9:39
  */
+
+@Component
 public class DataSourceTwoServer {
 
-    @Autowired
-    DataSourceTwoDao dataSourceTwoDao;
 
-    @Name(name = "dataSourceTwo", order = 15)
+    DataSourceThreeServer dataSourceThreeServer;
+
+
     public String test(int id) {
-        String value = dataSourceTwoDao.test(id);
-        System.out.println("======value:" + value + " from dataSourceTwoServer=======");
-        return value;
+        String name = MulitDataSourceSupport.getDataSourceName();
+        System.out.println("DataSourceTwoServer===before===" + name);
+        dataSourceThreeServer.test(id);
+        name = MulitDataSourceSupport.getDataSourceName();
+        System.out.println("DataSourceTwoServer=== after===" + name);
+        return name;
     }
 
 

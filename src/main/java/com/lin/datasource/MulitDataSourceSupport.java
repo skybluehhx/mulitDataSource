@@ -50,20 +50,11 @@ public class MulitDataSourceSupport {
     //选取所有中，优先级最高的
     public static String getDataSourceName() {
         JDBCContext jdbcContext = local.get();
-        Deque<JDBCContext> arrayDeque = DEQUE_LOCAL.get();
-        JDBCContext maxJDBC = getMaxOrderJDBCContext(arrayDeque);
-        //都为空
-        if (Objects.isNull(maxJDBC) && Objects.isNull(jdbcContext)) {
+        if (Objects.isNull(jdbcContext)) {
             logger.warn("the is no jdbcContext,mayBe you made a mistake");
             return null;
         }
-        //有一个为空
-        if (Objects.isNull(maxJDBC) || Objects.isNull(jdbcContext)) {
-            return maxJDBC == null ? jdbcContext.getDataSourceBeanName() : maxJDBC.getDataSourceBeanName();
-        }
-        //都不为空
-        return maxJDBC.getOrder() > jdbcContext.getOrder() ? maxJDBC.getDataSourceBeanName() : jdbcContext.getDataSourceBeanName();
-
+        return jdbcContext.getDataSourceBeanName();
     }
 
     public static void clear(HttpServletRequest request) {
@@ -79,6 +70,9 @@ public class MulitDataSourceSupport {
 
 
     /**
+     * 调用该方法前，请调用putDataSourceName或者putDataSourceName方法，
+     * 先存当前上下文
+     * <p>
      * 上下文往下放一层,如controller中涉及到多个数据源，多个数据服务
      */
     public static void pushContext() {
@@ -95,17 +89,32 @@ public class MulitDataSourceSupport {
     }
 
     /**
+     *
+     */
+    public static JDBCContext peekContext() {
+        return local.get();
+    }
+
+
+    public static JDBCContext getContext() {
+        JDBCContext context = local.get();
+        if (context == null) {
+            context = new JDBCContext();
+            local.set(context);
+        }
+        return context;
+    }
+
+    /**
      * 上下文取出一层，如controller中一个服务涉及到多个数据服务
      */
     public static void popContext() {
         Deque<JDBCContext> deque = DEQUE_LOCAL.get();
         if (deque != null) {
-            deque.pop();
-//            JDBCContext context = deque.peek();
-//            if (context != null) {
-//                deque.pop();
-////                local.set(deque.pop());
-//            }
+            JDBCContext context = deque.peek();
+            if (context != null) {
+                local.set(deque.pop());
+            }
         }
     }
 
@@ -118,35 +127,24 @@ public class MulitDataSourceSupport {
     }
 
 
-    private static JDBCContext getMaxOrderJDBCContext(Deque<JDBCContext> arrayDeque) {
-        if (Objects.isNull(arrayDeque)) {
-            return null;
-        }
-        JDBCContext max = null;
-        Iterator<JDBCContext> iterator = arrayDeque.iterator();
-        while (iterator.hasNext()) {
-            JDBCContext jdbcContext = iterator.next();
-            if (Objects.isNull(max) || max.getOrder() < jdbcContext.getOrder()) {
-                max = jdbcContext;
-                continue;
-            }
-
-        }
-        return max;
-
-    }
-
-
-    public static JDBCContext getCurrentJDBCCurrent() {
-        return local.get();
-    }
-
-    public static void removeCurrentJDBCCurrent() {
+    /**
+     * 清理上下文
+     */
+    public static void removeContext() {
         local.remove();
     }
 
-    public static void setCurrentJDBCCurrent(JDBCContext jdbcContext) {
-        local.set(jdbcContext);
-    }
+
+//    public static JDBCContext getCurrentJDBCCurrent() {
+//        return local.get();
+//    }
+//
+//    public static void removeCurrentJDBCCurrent() {
+//        local.remove();
+//    }
+//
+//    public static void setCurrentJDBCCurrent(JDBCContext jdbcContext) {
+//        local.set(jdbcContext);
+//    }
 
 }

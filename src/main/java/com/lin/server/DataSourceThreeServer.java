@@ -3,25 +3,21 @@ package com.lin.server;
 import com.lin.annotation.Name;
 import com.lin.dao.MulitSourceDao;
 import com.lin.datasource.MulitDataSourceSupport;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * @author jianglinzou
- * @date 2019/7/10 下午5:53
+ * @date 2019/7/10 下午5:55
  */
 @Service
-public class MulitSourceServer {
-
-    @Autowired
-    MulitSourceDao mulitSourceDao;
+public class DataSourceThreeServer {
 
 
-//    @Name(name = "dataSourceOne", order = 100)
+    @Name(name = "dataSourceThree")
     public String test(int id) {
-
         String name = MulitDataSourceSupport.getDataSourceName();
-        return mulitSourceDao.test(id);
+        System.out.println("DataSourceThreeServer===" + name);
+        return name;
     }
 
 
