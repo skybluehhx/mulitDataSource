@@ -1,5 +1,6 @@
 package com.lin.dao;
 
+import com.lin.annotation.Name;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MulitSourceDao {
+
 
 
     @ResultType(String.class)

@@ -1,5 +1,6 @@
 package com.lin.controller;
 
+import com.lin.annotation.Name;
 import com.lin.dao.MulitSourceDao;
 import com.lin.datasource.MultiDataSource;
 import org.slf4j.Logger;
@@ -27,6 +28,8 @@ public class TestController {
     @Autowired
     MulitSourceDao mulitSourceDao;
 
+
+    @Name(name = "dataSourceOne")
     @GetMapping("/test")
     @ResponseBody
     public String testDataSource() {
