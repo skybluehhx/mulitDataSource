@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 保存数据库连接的上下文信息
+ * 保存数据库名的上下文信息
  *
  * @author jianglinzou
  * @date 2019/7/10 下午3:12
