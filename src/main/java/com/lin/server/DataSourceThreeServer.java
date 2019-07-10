@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class DataSourceThreeServer {
 
-    MulitSourceDao mulitSourceDao;
 
     @Name(name = "dataSourceThree")
     public String test(int id) {
