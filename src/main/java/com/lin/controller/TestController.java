@@ -1,5 +1,6 @@
 package com.lin.controller;
 
+import com.lin.annotation.Name;
 import com.lin.dao.MulitSourceDao;
 import com.lin.datasource.MulitDataSourceSupport;
 import com.lin.server.DataSourceOneServer;
@@ -26,8 +27,6 @@ public class TestController {
     DataSourceOneServer dataSourceOneServer;
 
 
-
-
     @GetMapping("/test")
     @ResponseBody
     public String testDataSource() {
@@ -40,9 +39,22 @@ public class TestController {
         return "1";
     }
 
-    @GetMapping("/haha")
+    @Name(name = "dataSourceOne")
+    @GetMapping("/one")
     @ResponseBody
-    public String hahaha() {
-        return "hahaha!";
+    public String dataSourceOne() {
+
+        String value = mulitSourceDao.test(1);
+        return value;
+    }
+
+
+    @Name(name = "dataSourceTwo")
+    @GetMapping("/two")
+    @ResponseBody
+    public String dataSourceTwo() {
+
+        String value = mulitSourceDao.test(1);
+        return value;
     }
 }
