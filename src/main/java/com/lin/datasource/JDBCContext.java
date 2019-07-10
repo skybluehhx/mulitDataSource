@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -24,22 +21,43 @@ public class JDBCContext {
 
     private Logger logger = LoggerFactory.getLogger(JDBCContext.class);
 
-    private String dataSourceBean;//优先级最高，有该字段时，将默认使用该字段，没有将从names集合中获取
+    private String dataSourceBean;//优先级最高，有该字段时，将默认使用该字段，没有将从names集合中获取,
 
-    private List<NameMethod> nameMethods;
+    private NameMethod nameMethod;
+
+    private int order;
+
+    private boolean seal;
 
 
     public JDBCContext() {
-        nameMethods = new ArrayList<>();
+
     }
 
-    public void setDataSourceBean(String beanName) {
-        this.dataSourceBean = beanName;
+    /**
+     * 该构造函数一般只在首次拦截请求的时候使用
+     *
+     * @param dataSourceBean
+     */
+    public JDBCContext(String dataSourceBean) {
+        order = Integer.MAX_VALUE;
+        this.dataSourceBean = dataSourceBean;
+        this.seal = true;
     }
 
 
     public void putNameMethod(NameMethod nameMethod) {
-        nameMethods.add(nameMethod);
+        if (seal) {
+            throw new IllegalArgumentException("the jdbccontext is seal , you can't operate it");
+        }
+        int order = nameMethod.getName().order();
+        putNameMethodAndOrder(nameMethod, order);
+    }
+
+    protected void putNameMethodAndOrder(NameMethod nameMethod, int order) {
+        this.nameMethod = nameMethod;
+        this.order = order;
+        this.seal = true;
     }
 
 
@@ -47,45 +65,59 @@ public class JDBCContext {
         if (!Strings.isBlank(dataSourceBean)) {
             return dataSourceBean;
         }
-
-        List<Name> names = nameMethods.stream().map(x -> x.getName()).sorted(new Comparator<Name>() {
-            @Override
-            public int compare(Name o1, Name o2) {
-                return o2.order() - o1.order();
-            }
-        }).collect(Collectors.toList());
-
-        if (!CollectionUtils.isEmpty(names)) {
-            if (names.size() > 1) {
-                logger.warn("the number of name:{}  is larger than one ,the methodChain is:{} ", names.size(), getInvokerMethodChain());
-            }
-            Name name = names.get(0);
-            logger.warn("the final name used is :{},the order is:{} ", name.name(), name.order());
-
+        Name name = nameMethod.getName();
+        if (Objects.nonNull(name)) {
             return name.name();
         }
         return null;
+//
+//        List<Name> names = nameMethods.stream().map(x -> x.getName()).sorted(new Comparator<Name>() {
+//            @Override
+//            public int compare(Name o1, Name o2) {
+//                return o2.order() - o1.order();
+//            }
+//        }).collect(Collectors.toList());
+//
+//        if (!CollectionUtils.isEmpty(names)) {
+//            if (names.size() > 1) {
+//                logger.warn("the number of name:{}  is larger than one ,the methodChain is:{} ", names.size(), getInvokerMethodChain());
+//            }
+//            Name name = names.get(0);
+//            logger.warn("the final name used is :{},the order is:{} ", name.name(), name.order());
+//
+//            return name.name();
+//        }
+//        return null;
     }
 
 
     private String getInvokerMethodChain() {
 
-        StringBuilder stringBuilder = new StringBuilder();
-        int i = 0;
-        List<Method> methods = nameMethods.stream().map(x -> x.getMethod()).collect(Collectors.toList());
-
-        for (Method method : methods) {
-            stringBuilder.append(method.getName());
-            i++;
-            if (i != methods.size()) {
-                stringBuilder.append("->");
-            }
-        }
-        return stringBuilder.toString();
+//        StringBuilder stringBuilder = new StringBuilder();
+//        int i = 0;
+//        List<Method> methods = nameMethods.stream().map(x -> x.getMethod()).collect(Collectors.toList());
+//
+//        for (Method method : methods) {
+//            stringBuilder.append(method.getName());
+//            i++;
+//            if (i != methods.size()) {
+//                stringBuilder.append("->");
+//            }
+//        }
+//        return stringBuilder.toString();
+        return null;
     }
 
     public void clear() {
         dataSourceBean = null;
-        nameMethods = null;
+        nameMethod = null;
+    }
+
+    public int getOrder() {
+        return this.order;
+    }
+
+    public boolean getSeal() {
+        return this.seal;
     }
 }

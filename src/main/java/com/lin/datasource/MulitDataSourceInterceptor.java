@@ -25,6 +25,7 @@ public class MulitDataSourceInterceptor implements HandlerInterceptor {
         if (Strings.isBlank(dataSource)) {
             dataSource = request.getHeader(DATA_SOURCE_PARAM_NAME);
         }
+
         MulitDataSourceSupport.putDataSourceName(request, dataSource);
         return true;
     }

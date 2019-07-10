@@ -2,7 +2,10 @@ package com.lin.controller;
 
 import com.lin.annotation.Name;
 import com.lin.dao.MulitSourceDao;
+import com.lin.datasource.MulitDataSourceSupport;
 import com.lin.datasource.MultiDataSource;
+import com.lin.server.MulitSourceServer;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +31,16 @@ public class TestController {
     @Autowired
     MulitSourceDao mulitSourceDao;
 
+    @Autowired
+    MulitSourceServer mulitSourceServer;
 
-    @Name(name = "dataSourceOne")
+
+    @Name(name = "dataSourceOne", extend = false)
     @GetMapping("/test")
     @ResponseBody
     public String testDataSource() {
+        mulitSourceServer.test(1);
+        String name = MulitDataSourceSupport.getDataSourceName();
         String value = mulitSourceDao.test(1);
         return value;
     }
