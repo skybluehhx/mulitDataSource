@@ -1,5 +1,5 @@
 spring.profiles.active: env,proxy,partners,reject-reasons
-spring.application.name: std-application
+spring.application.name: mulitds
 
 
 mybatis:

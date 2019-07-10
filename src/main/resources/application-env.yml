@@ -28,8 +28,3 @@ spring:
       validation-query: SELECT 1
       test-while-idle: true
       time-between-eviction-runs-millis: 27800
-
-#  redis:
-#    sentinel:
-#      master: mymaster
-#      nodes: 10.143.248.78:26379
