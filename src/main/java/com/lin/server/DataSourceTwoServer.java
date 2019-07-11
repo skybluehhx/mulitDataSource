@@ -1,7 +1,7 @@
 package com.lin.server;
 
 
-import com.lin.datasource.MulitDataSourceSupport;
+import com.lin.support.MulitDataSourceSupport;
 import org.springframework.stereotype.Component;
 
 

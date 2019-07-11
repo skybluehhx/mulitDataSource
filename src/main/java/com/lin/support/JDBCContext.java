@@ -1,4 +1,4 @@
-package com.lin.datasource;
+package com.lin.support;
 
 import com.lin.annotation.Name;
 import org.apache.logging.log4j.util.Strings;
@@ -59,43 +59,10 @@ public class JDBCContext {
             return name.name();
         }
         return null;
-//
-//        List<Name> names = nameMethods.stream().map(x -> x.getName()).sorted(new Comparator<Name>() {
-//            @Override
-//            public int compare(Name o1, Name o2) {
-//                return o2.order() - o1.order();
-//            }
-//        }).collect(Collectors.toList());
-//
-//        if (!CollectionUtils.isEmpty(names)) {
-//            if (names.size() > 1) {
-//                logger.warn("the number of name:{}  is larger than one ,the methodChain is:{} ", names.size(), getInvokerMethodChain());
-//            }
-//            Name name = names.get(0);
-//            logger.warn("the final name used is :{},the order is:{} ", name.name(), name.order());
-//
-//            return name.name();
-//        }
-//        return null;
     }
 
 
-    private String getInvokerMethodChain() {
 
-//        StringBuilder stringBuilder = new StringBuilder();
-//        int i = 0;
-//        List<Method> methods = nameMethods.stream().map(x -> x.getMethod()).collect(Collectors.toList());
-//
-//        for (Method method : methods) {
-//            stringBuilder.append(method.getName());
-//            i++;
-//            if (i != methods.size()) {
-//                stringBuilder.append("->");
-//            }
-//        }
-//        return stringBuilder.toString();
-        return null;
-    }
 
     public void clear() {
         dataSourceBean = null;

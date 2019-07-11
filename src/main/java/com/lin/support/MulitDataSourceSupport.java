@@ -1,4 +1,4 @@
-package com.lin.datasource;
+package com.lin.support;
 
 import com.lin.annotation.Name;
 import org.apache.logging.log4j.util.Strings;
@@ -63,8 +63,7 @@ public class MulitDataSourceSupport {
         if (Objects.nonNull(jdbcContext)) {
             jdbcContext.clear();
         }
-        local.remove();
-        DEQUE_LOCAL.remove();
+        removeAllContext();
 
     }
 
@@ -133,18 +132,5 @@ public class MulitDataSourceSupport {
     public static void removeContext() {
         local.remove();
     }
-
-
-//    public static JDBCContext getCurrentJDBCCurrent() {
-//        return local.get();
-//    }
-//
-//    public static void removeCurrentJDBCCurrent() {
-//        local.remove();
-//    }
-//
-//    public static void setCurrentJDBCCurrent(JDBCContext jdbcContext) {
-//        local.set(jdbcContext);
-//    }
 
 }

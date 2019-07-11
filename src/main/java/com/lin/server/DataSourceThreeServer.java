@@ -1,8 +1,7 @@
 package com.lin.server;
 
 import com.lin.annotation.Name;
-import com.lin.dao.MulitSourceDao;
-import com.lin.datasource.MulitDataSourceSupport;
+import com.lin.support.MulitDataSourceSupport;
 import org.springframework.stereotype.Service;
 
 /**

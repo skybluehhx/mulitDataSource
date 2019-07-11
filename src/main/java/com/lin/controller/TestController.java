@@ -2,9 +2,8 @@ package com.lin.controller;
 
 import com.lin.annotation.Name;
 import com.lin.dao.MulitSourceDao;
-import com.lin.datasource.MulitDataSourceSupport;
+import com.lin.support.MulitDataSourceSupport;
 import com.lin.server.DataSourceOneServer;
-import com.lin.server.DataSourceThreeServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
