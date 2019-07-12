@@ -1,6 +1,7 @@
 package com.lin.controller;
 
-import MulitDataSourceInterceptor;
+
+import com.lin.Interceptor.MulitDataSourceInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,22 +25,13 @@ public class WebXML extends WebMvcConfigurerAdapter {
     @Autowired
     MulitDataSourceInterceptor mulitDataSourceInterceptor;
 
-//
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(mulitDataSourceInterceptor);
-//        registry.addInterceptor(loginInterceptor);
-//        registry.addInterceptor(loginInterceptor);
         super.addInterceptors(registry);
     }
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/webjars/**")
-//                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-//        super.addResourceHandlers(registry);
-//    }
 
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
