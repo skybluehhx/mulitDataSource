@@ -12,11 +12,11 @@ import java.lang.reflect.Field;
  * @author jianglinzou
  * @date 2019/7/2 上午11:38
  */
-//@Configuration
+
 public abstract class BaseMulitDataSourceConfig implements InitializingBean {
 
 
-//    static final String MAPPER_LOCATION = "classpath*:mybatis/mapper/*.xml";
+
 
     public BaseMulitDataSourceConfig() {
 
@@ -31,22 +31,6 @@ public abstract class BaseMulitDataSourceConfig implements InitializingBean {
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
         alterMapperRegistry(sqlSessionFactory);
     }
-
-//    @Bean(name = "mulitSqlSessionFactory")
-//    public SqlSessionFactory clusterSqlSessionFactory(@Qualifier("multiDataSource") DataSource mulitDataSource)
-//            throws Exception {
-////        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-////        sessionFactory.setDataSource(mulitDataSource);
-////        sessionFactory.setTypeAliasesPackage("com.lin.dao");
-////        sessionFactory.setConfigLocation(new ClassPathResource("mybatis/mybatis-config.xml"));
-////        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
-////                .getResources(BaseMulitDataSourceConfig.MAPPER_LOCATION));
-////        SqlSessionFactory sqlSessionFactory = sessionFactory.getObject();
-////
-//
-//        alterMapperRegistry(sqlSessionFactory);
-//        return sqlSessionFactory;
-//    }
 
 
     protected void alterMapperRegistry(SqlSessionFactory sqlSessionFactory) {

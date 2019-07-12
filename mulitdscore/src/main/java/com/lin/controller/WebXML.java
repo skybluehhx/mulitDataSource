@@ -1,6 +1,6 @@
 package com.lin.controller;
 
-import com.lin.support.MulitDataSourceInterceptor;
+import MulitDataSourceInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

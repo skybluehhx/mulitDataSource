@@ -10,10 +10,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  */
 @EnableConfigurationProperties
 @SpringBootApplication
-public class ExampleApplicationStart {
+public class MulitApplicationStart {
 
     public static void main(String[] args) {
-        SpringApplication.run(ExampleApplicationStart.class, args);
+        SpringApplication.run(MulitApplicationStart.class, args);
     }
 
 }
