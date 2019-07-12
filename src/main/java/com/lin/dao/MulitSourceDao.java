@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface MulitSourceDao {
 
 
-
+    @Name(name = "dataSourceOne")
     @ResultType(String.class)
     @Select("select name from datasource where id =#{0}")
     public String test(int id);

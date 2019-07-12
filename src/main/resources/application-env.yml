@@ -2,7 +2,7 @@ app.env: local
 
 spring:
   datasource:
-    one:
+    two:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/dataSourceTwo?autoReconnect=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull
       username: root
       password: 123123
@@ -15,7 +15,7 @@ spring:
       validation-query: SELECT 1
       test-while-idle: true
       time-between-eviction-runs-millis: 27800
-    two:
+    one:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/dataSourceOne?autoReconnect=true&characterEncoding=UTF8&&parseTime=True
       username: root
       password: 123123

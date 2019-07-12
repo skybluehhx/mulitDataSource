@@ -19,7 +19,7 @@ public class DataSourceConfig {
 
     @Bean(name = "dataSourceTwo")
     @Qualifier("dataSourceTwo")
-    @ConfigurationProperties(prefix = "spring.datasource.one")
+    @ConfigurationProperties(prefix = "spring.datasource.two")
     public DataSource shangtongdaiDataSource() {
         return DataSourceBuilder.create().build();
     }
@@ -27,7 +27,7 @@ public class DataSourceConfig {
 
     @Bean(name = "dataSourceOne")
     @Qualifier("dataSourceOne")
-    @ConfigurationProperties(prefix = "spring.datasource.two")
+    @ConfigurationProperties(prefix = "spring.datasource.one")
     @Primary
     public DataSource kingDeeDataSource() {
         return DataSourceBuilder.create().build();
