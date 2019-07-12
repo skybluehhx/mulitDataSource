@@ -1,7 +1,7 @@
 package com.lin.server;
 
 import com.lin.annotation.Name;
-import com.lin.dao.MulitSourceDao;
+import com.lin.dao.DataSourceOneDao;
 import com.lin.support.MulitDataSourceSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class DataSourceOneServer {
 
     @Autowired
-    MulitSourceDao mulitSourceDao;
+    DataSourceOneDao mulitSourceDao;
 
     @Autowired
     DataSourceTwoServer dataSourceTwoServer;

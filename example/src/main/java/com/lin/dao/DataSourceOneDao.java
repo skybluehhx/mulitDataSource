@@ -10,11 +10,17 @@ import org.springframework.stereotype.Repository;
  * @date 2019/7/4 下午10:22
  */
 @Repository
-public interface MulitSourceDao {
+public interface DataSourceOneDao {
 
 
     @Name(name = "dataSourceOne")
     @ResultType(String.class)
     @Select("select name from datasource where id =#{0}")
     public String test(int id);
+
+
+    @ResultType(String.class)
+    @Select("select name from datasource where id =#{0}")
+    public String testDataSource(int id);
+
 }

@@ -2,7 +2,7 @@ package com.lin.controller;
 
 import com.lin.annotation.Name;
 import com.lin.dao.DataSourceTwoDao;
-import com.lin.dao.MulitSourceDao;
+import com.lin.dao.DataSourceOneDao;
 import com.lin.support.MulitDataSourceSupport;
 import com.lin.server.DataSourceOneServer;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class TestController {
     private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
     @Autowired
-    MulitSourceDao mulitSourceDao;
+    DataSourceOneDao dataSourceOneDao;
 
     @Autowired
     DataSourceOneServer dataSourceOneServer;
@@ -42,30 +42,29 @@ public class TestController {
         return "1";
     }
 
-    @Name(name = "dataSourceOne")
     @GetMapping("/one")
     @ResponseBody
     public String dataSourceOne() {
 
-        String value = mulitSourceDao.test(1);
+        String value = dataSourceOneDao.test(1);
+        return value;
+    }
+
+
+    @GetMapping("/two")
+    @ResponseBody
+    public String dataSourceTwo() {
+
+        String value = dataSourceTwoDao.test(1);
         return value;
     }
 
 
     @Name(name = "dataSourceTwo")
-    @GetMapping("/two")
-    @ResponseBody
-    public String dataSourceTwo() {
-
-        String value = mulitSourceDao.test(1);
-        return value;
-    }
-
-
     @GetMapping("/dao")
     @ResponseBody
     public String testDao() {
-        String value = dataSourceTwoDao.test(1);
+        String value = dataSourceOneDao.testDataSource(1);
         return value;
     }
 }

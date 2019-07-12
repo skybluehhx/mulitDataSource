@@ -1,9 +1,12 @@
 package com.lin.support.ibatis;
 
 import com.lin.annotation.Name;
+import com.lin.support.MulitDataSourceSupport;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -16,6 +19,7 @@ import static com.lin.support.MulitDataSourceSupport.*;
  */
 public class MulitMapperProxy<T> extends MapperProxy<T> {
 
+    public static Logger logger = LoggerFactory.getLogger(MulitMapperProxy.class);
 
     public MulitMapperProxy(SqlSession sqlSession, Class<T> mapperInterface, Map<Method, MapperMethod> methodCache) {
         super(sqlSession, mapperInterface, methodCache);
@@ -36,6 +40,8 @@ public class MulitMapperProxy<T> extends MapperProxy<T> {
         doSaveJDBCContextIfNecessary(method, handler);
         dosetDataSourceNameIfNecessary(method, handler); //执行调用时，设置上下文
         try {
+            String dataSourceBeanName = getDataSourceName();
+            logger.info("the method:{} will use dataSourceBeanName:{}", method.getName(), dataSourceBeanName);
             return super.invoke(o, method, objects);
         } finally {
             doRemoveContextIfNecessary(method, handler); //如有必要，需要移除当前上下文
