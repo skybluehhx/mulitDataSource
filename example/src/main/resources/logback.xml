@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <property name="CONSOLE_LOG_PATTERN" value="%red(%date{yyyy-MM-dd HH:mm:ss.SSS}) %yellow([%thread]) %highlight(%-5level) %cyan(%logger{50}:%blue(%line)) %green(%X{TRACE_ID} %X{userId}) - %magenta(%m%n)"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="cn.creditease" level="debug">
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

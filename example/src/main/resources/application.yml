@@ -1,0 +1,13 @@
+spring.profiles.active: env,proxy,partners,reject-reasons
+spring.application.name: mulitds
+
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+
+
+
+mulitdatasource:
+  defaultDataSourceBeanName: dataSourceOne
+
+
