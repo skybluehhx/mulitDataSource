@@ -47,8 +47,8 @@ public class MulitDataSourceConfig {
         org.apache.ibatis.session.Configuration configuration = (org.apache.ibatis.session.Configuration) ReflectionUtils.getField(configField, sqlSessionFactory);
         Field registryField = ReflectionUtils.findField(org.apache.ibatis.session.Configuration.class, "mapperRegistry", MapperRegistry.class);
         ReflectionUtils.makeAccessible(registryField);
-        //修改sqlSessionFactory中MapperRegistry的实现
-        ReflectionUtils.setField(registryField, configuration, new MulitMapperRegistry(configuration)); //将字段替换为我们自定义的MapperRegistry
+        //修改sqlSessionFactory中configuration属性的MapperRegistry的实现
+        ReflectionUtils.setField(registryField, configuration, new MulitMapperRegistry(configuration)); //将字段替换为我们自定义的MulitMapperRegistry
 
     }
 
