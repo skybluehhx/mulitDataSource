@@ -3,9 +3,7 @@ package com.lin.support.ibatis;
 import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.binding.MapperProxyFactory;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 
 /**

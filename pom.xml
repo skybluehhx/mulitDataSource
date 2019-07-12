@@ -7,14 +7,13 @@
     <groupId>com.lin</groupId>
     <artifactId>mulitds</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.6.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+    <modules>
+        <module>example</module>
+        <module>mulitdscore</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,85 +22,98 @@
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
     </properties>
 
-    <dependencies>
-        <!--spring-boot基本依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+    <!--<properties>-->
+    <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+    <!--<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
+    <!--<java.version>1.8</java.version>-->
+    <!--<spring-cloud.version>Finchley.SR2</spring-cloud.version>-->
+    <!--</properties>-->
 
+    <!--<dependencies>-->
+    <!--&lt;!&ndash;spring-boot基本依赖&ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter</artifactId>-->
+    <!--</dependency>-->
 
-        <!--sql,mybatis依赖-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.34</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.0</version>
-        </dependency>
-
-        <!--lombok依赖，用于简单生成pojo-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.2</version>
-        </dependency>
+    <!--<dependency>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-test</artifactId>-->
+    <!--<scope>test</scope>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-web</artifactId>-->
+    <!--</dependency>-->
 
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
+    <!--&lt;!&ndash;sql,mybatis依赖&ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>mysql</groupId>-->
+    <!--<artifactId>mysql-connector-java</artifactId>-->
+    <!--<version>5.1.34</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+    <!--<groupId>org.mybatis.spring.boot</groupId>-->
+    <!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
+    <!--<version>1.1.1</version>-->
+    <!--</dependency>-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.apache.commons</groupId>-->
+    <!--<artifactId>commons-lang3</artifactId>-->
+    <!--<version>3.0</version>-->
+    <!--</dependency>-->
+
+    <!--&lt;!&ndash;lombok依赖，用于简单生成pojo&ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.projectlombok</groupId>-->
+    <!--<artifactId>lombok</artifactId>-->
+    <!--<version>1.18.2</version>-->
+    <!--</dependency>-->
 
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
+    <!--<dependency>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-aop</artifactId>-->
+    <!--</dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>1.0.0</version>
-            <scope>test</scope>
-        </dependency>
 
-    </dependencies>
+    <!--<dependency>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-configuration-processor</artifactId>-->
+    <!--<optional>true</optional>-->
+    <!--</dependency>-->
 
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.assertj/assertj-core &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>org.assertj</groupId>-->
+    <!--<artifactId>assertj-core</artifactId>-->
+    <!--<version>1.0.0</version>-->
+    <!--<scope>test</scope>-->
+    <!--</dependency>-->
+
+    <!--</dependencies>-->
 
 
     <!--<dependencyManagement>-->
-        <!--<dependencies>-->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-dependencies</artifactId>-->
-                <!--<version>${spring-cloud.version}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
-        <!--</dependencies>-->
+    <!--<dependencies>-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework.cloud</groupId>-->
+    <!--<artifactId>spring-cloud-dependencies</artifactId>-->
+    <!--<version>${spring-cloud.version}</version>-->
+    <!--<type>pom</type>-->
+    <!--<scope>import</scope>-->
+    <!--</dependency>-->
+    <!--</dependencies>-->
     <!--</dependencyManagement>-->
 
 

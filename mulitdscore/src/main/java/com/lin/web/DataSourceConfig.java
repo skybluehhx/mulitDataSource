@@ -1,4 +1,4 @@
-package com.lin.config.web;
+package com.lin.web;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;

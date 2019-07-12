@@ -1,13 +1,10 @@
 package com.lin.support.ibatis;
 
 import com.lin.annotation.Name;
-import com.lin.support.MulitDataSourceSupport;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.cglib.proxy.InvocationHandler;
 
-import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Map;
 

@@ -1,6 +1,5 @@
 package com.lin.support.ibatis;
 
-import org.apache.catalina.mapper.Mapper;
 import org.apache.ibatis.binding.BindingException;
 import org.apache.ibatis.binding.MapperProxyFactory;
 import org.apache.ibatis.binding.MapperRegistry;
