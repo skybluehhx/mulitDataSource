@@ -1,7 +1,6 @@
 package com.lin.Aspect;
 
 import com.lin.annotation.Name;
-import com.lin.support.MulitDataSourceSupport;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
+
+import static com.lin.support.MulitDataSourceSupport.*;
 
 /**
  * @author jianglinzou
@@ -35,42 +36,15 @@ public class NameAspect {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         boolean handler = isHandler(method);
-        doSaveJDBCContext(method, handler);
-        dosetDataSourceName(method, handler); //执行调用时，设置上下文
+        doSaveJDBCContextIfNecessary(method, handler);
+        dosetDataSourceNameIfNecessary(method, handler); //执行调用时，设置上下文
         try { //执行调用
             return pjp.proceed();
         } catch (Throwable e) {
             throw e;
         } finally {
-            doRemoveContext(method, handler); //如有必要，需要移除当前上下文
-            doPopContext(method, handler);//如有必要，需要恢复上层上下文
-        }
-    }
-
-
-    //保存上下文
-    protected void doSaveJDBCContext(Method method, boolean handler) {
-        if (handler) {
-            MulitDataSourceSupport.pushContext();
-        }
-    }
-
-    protected void dosetDataSourceName(Method method, boolean handler) {
-        if (handler) {
-            Name name = method.getAnnotation(Name.class);
-            MulitDataSourceSupport.putDataSourceName(method, name);
-        }
-    }
-
-    protected void doRemoveContext(Method method, boolean handler) {
-        if (handler) {
-            MulitDataSourceSupport.removeContext();
-        }
-    }
-
-    protected void doPopContext(Method method, boolean handler) {
-        if (handler) {
-            MulitDataSourceSupport.popContext();
+            doRemoveContextIfNecessary(method, handler); //如有必要，需要移除当前上下文
+            doPopContextIfNecessary(method, handler);//如有必要，需要恢复上层上下文
         }
     }
 

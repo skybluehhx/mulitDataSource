@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import static com.lin.support.MulitDataSourceSupport.*;
+
 /**
  * @author jianglinzou
  * @date 2019/7/12 上午10:31
@@ -41,35 +43,6 @@ public class MulitMapperProxy<T> extends MapperProxy<T> {
         } finally {
             doRemoveContextIfNecessary(method, handler); //如有必要，需要移除当前上下文
             doPopContextIfNecessary(method, handler);//如有必要，需要恢复上层上下文
-        }
-
-
-    }
-
-
-    //保存上下文
-    protected void doSaveJDBCContextIfNecessary(Method method, boolean handler) {
-        if (handler) {
-            MulitDataSourceSupport.pushContext();
-        }
-    }
-
-    protected void dosetDataSourceNameIfNecessary(Method method, boolean handler) {
-        if (handler) {
-            Name name = method.getAnnotation(Name.class);
-            MulitDataSourceSupport.putDataSourceName(method, name);
-        }
-    }
-
-    protected void doRemoveContextIfNecessary(Method method, boolean handler) {
-        if (handler) {
-            MulitDataSourceSupport.removeContext();
-        }
-    }
-
-    protected void doPopContextIfNecessary(Method method, boolean handler) {
-        if (handler) {
-            MulitDataSourceSupport.popContext();
         }
     }
 
