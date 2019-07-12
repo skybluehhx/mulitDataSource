@@ -1,4 +1,4 @@
-package com.lin.web;
+package com.lin.config;
 
 import com.lin.support.ibatis.MulitMapperRegistry;
 import org.apache.ibatis.binding.MapperRegistry;

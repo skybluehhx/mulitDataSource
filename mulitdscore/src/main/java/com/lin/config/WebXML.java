@@ -1,4 +1,4 @@
-package com.lin.controller;
+package com.lin.config;
 
 
 import com.lin.Interceptor.MulitDataSourceInterceptor;

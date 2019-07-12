@@ -104,7 +104,7 @@ public class MultiDataSource implements DataSource, ApplicationContextAware {
 
     @PostConstruct
     public void configDefaultDataSource() {
-        System.out.println("========="+this.defaultDataSourceBeanName+"======");
+        logger.info("will config dataDataSourceBeanName:{} for mulitDataSource", this.defaultDataSourceBeanName);
         this.defaultDataSource = (DataSource) applicationContext.getBean(defaultDataSourceBeanName);
     }
 

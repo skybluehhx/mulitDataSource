@@ -41,7 +41,7 @@ public class MulitMapperProxy<T> extends MapperProxy<T> {
         dosetDataSourceNameIfNecessary(method, handler); //执行调用时，设置上下文
         try {
             String dataSourceBeanName = getDataSourceName();
-            logger.info("the method:{} will use dataSourceBeanName:{}", method.getName(), dataSourceBeanName);
+            logger.info("the method:{} will use dataSourceBeanName:{}", method.toString(), dataSourceBeanName);
             return super.invoke(o, method, objects);
         } finally {
             doRemoveContextIfNecessary(method, handler); //如有必要，需要移除当前上下文
