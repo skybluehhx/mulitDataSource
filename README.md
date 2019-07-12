@@ -6,7 +6,7 @@
 创建两个数据库名字分别为dataSourceTwo,dataSourceOne.
 
 #
-在dataSourceTwo中执行以下数据语句
+在dataSourceOne中执行以下数据语句
 
 #
 SET NAMES utf8;
