@@ -36,14 +36,12 @@ public class NameAspect {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         boolean handler = isHandler(method);
-        doSaveJDBCContextIfNecessary(method, handler);
-        dosetDataSourceNameIfNecessary(method, handler); //执行调用时，设置上下文
+        doPushJDBCContextIfNecessary(method, handler); //执行调用时，设置上下文
         try { //执行调用
             return pjp.proceed();
         } catch (Throwable e) {
             throw e;
         } finally {
-            doRemoveContextIfNecessary(method, handler); //如有必要，需要移除当前上下文
             doPopContextIfNecessary(method, handler);//如有必要，需要恢复上层上下文
         }
     }

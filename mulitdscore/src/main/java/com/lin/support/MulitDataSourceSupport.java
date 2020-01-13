@@ -142,11 +142,29 @@ public class MulitDataSourceSupport {
      * @param method
      * @param handler handler 为ture是则处理，这也意味着，method方法上必有{@link com.lin.annotation.Name}注解
      */
-    public static void doSaveJDBCContextIfNecessary(Method method, boolean handler) {
+    public static void doPushJDBCContextIfNecessary(Method method, boolean handler) {
         if (handler) {
             MulitDataSourceSupport.pushContext();
+            Name name = method.getAnnotation(Name.class);
+            putDataSourceName(method, name);
         }
     }
+
+
+    /**
+     * 移除当前上下文
+     *
+     * @param method
+     * @param handler handler 为ture是则处理，这也意味着，method方法上必有{@link com.lin.annotation.Name}注解
+     */
+    public static void doPopContextIfNecessary(Method method, boolean handler) {
+        if (handler) {
+            MulitDataSourceSupport.removeContext();
+            popContext();
+
+        }
+    }
+
 
     /**
      * 设置当前上下文
@@ -158,30 +176,6 @@ public class MulitDataSourceSupport {
         if (handler) {
             Name name = method.getAnnotation(Name.class);
             putDataSourceName(method, name);
-        }
-    }
-
-    /**
-     * 移除当前上下文
-     *
-     * @param method
-     * @param handler handler 为ture是则处理，这也意味着，method方法上必有{@link com.lin.annotation.Name}注解
-     */
-    public static void doRemoveContextIfNecessary(Method method, boolean handler) {
-        if (handler) {
-            MulitDataSourceSupport.removeContext();
-        }
-    }
-
-    /**
-     * 恢复上层上下文
-     *
-     * @param method
-     * @param handler handler 为ture是则处理，这也意味着，method方法上必有{@link com.lin.annotation.Name}注解
-     */
-    public static void doPopContextIfNecessary(Method method, boolean handler) {
-        if (handler) {
-            MulitDataSourceSupport.popContext();
         }
     }
 
