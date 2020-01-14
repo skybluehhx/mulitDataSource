@@ -1,5 +1,10 @@
 # mulitDataSource
-
+#
+项目功能：
+与传统在mybatis中使用多数据源相比，简化的冗余的代码，将多数据源集中管理，
+避免了重复创建多个无用的大对象，提供了工作效率
+#
+使用流程
 #
 修改resources目录下application-env.yml配置文件中的数据库密码
 #
